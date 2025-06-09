@@ -1,25 +1,26 @@
-import { isPrime } from "./problem3.js";
+import { vigenereEncrypt, vigenereDecrypt } from "./problem3.js";
 import { assertEquals, test } from "./utils/test.js";
 
-await test("isPrime", () => {
-  assertEquals(isPrime(1), false);
-  assertEquals(isPrime(2), true);
-  assertEquals(isPrime(3), true);
-  assertEquals(isPrime(4), false);
-  assertEquals(isPrime(5), true);
-  assertEquals(isPrime(6), false);
-  assertEquals(isPrime(7), true);
-  assertEquals(isPrime(8), false);
-  assertEquals(isPrime(9), false);
-  assertEquals(isPrime(10), false);
-  assertEquals(isPrime(11), true);
-  assertEquals(isPrime(12), false);
-  assertEquals(isPrime(13), true);
-  assertEquals(isPrime(14), false);
-  assertEquals(isPrime(15), false);
-  assertEquals(isPrime(16), false);
-  assertEquals(isPrime(17), true);
-  assertEquals(isPrime(18), false);
-  assertEquals(isPrime(19), true);
-  assertEquals(isPrime(20), false);
+await test("problem3: encrypts properly", async () => {
+  const plaintext = "attacking tonight";
+  const key = "oculorhinolaryngology";
+  assertEquals(vigenereEncrypt(plaintext, key), "ovnlqbpvthznzeuz");
+});
+
+await test("problem3: decrypts properly", async () => {
+  const ciphertext = "ovnlqbpvthznzeuz";
+  const key = "oculorhinolaryngology";
+  assertEquals(vigenereDecrypt(ciphertext, key), "attackingtonight");
+});
+
+await test("problem 3: encrypts attack at dawn", async () => {
+  const plaintext = "attack at dawn";
+  const key = "lemon";
+  assertEquals(vigenereEncrypt(plaintext, key), "lxfopvefrnhr");
+});
+
+await test("problem 3: decrypts attach at dawn", async () => {
+  const ciphertext = "lxfopvefrnhr";
+  const key = "lemon";
+  assertEquals(vigenereDecrypt(ciphertext, key), "attackatdawn");
 });
